@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Jada Garrison
+DSCI 15310
+Section 002
+01 October 2019
+"""
+print(__doc__)
+#Printing doc string to console
+
+import pandas as pd
+#Importing Pandas module
+
+addata = {'id': ["Northumbria Logica","David's Ad Agency ","Very Normal Ads" ],
+          'perdaycount': [1242,1000,950],
+          'amount': [.25,3.50,24.75],
+          'geo': ["Nigeria","US","US"],
+          'keywords':["politics","shopping","politics"],
+          'vars':["partisan","partisan","age"],
+          'ip':["223.271.248.1568","140.192.45.170","73.107.60.11"]}
+#Creating dictionary with information from Table 1
+
+addf = pd.DataFrame(addata)
+print(addf)
+#Printing information from dicitonary as a data frame
+
+data = pd.read_csv('/Users/jada_garr/Desktop/CTP/ipsept18.csv')
+#Reading in data from given file
+mylist = data['ips'].tolist()
+#Creating a list from the data in the "ips" column
+print (len(data))
+#Printing lenth of mylist to the console
+print (data['ips'][0:10])
+#Printing the first 10 values from the mylist to the console
+
+#def fraud ():
+   # """ Function "fraud" accepts 1 argument and determines if IP addresses 
+    #are fraudulent or not"""
+#print(fraud.__doc)
+    
+if len(mylist[7]) > 14 or len(mylist[7]) < 10:
+    print ("Fraudulent. Invalid IP Address")
+    
+elif mylist[3] == mylist[3+1] and mylist[3] == mylist[3+2]:
+    print ("Fraudulent. Too many requests")
+    
+#elif mylist[] == Line indexing?
+   # print ("Fraudulent. Banned request location.")
+    
+else :
+    print ("All Clear")
+    
