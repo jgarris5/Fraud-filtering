@@ -1,0 +1,69 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Jada Garrison
+DSCI 15310
+Section 002
+01 October 2019
+"""
+print(__doc__)
+#Printing doc string to console
+
+import pandas as pd
+#Importing Pandas module
+
+addata = {'id': ["Northumbria Logica","David's Ad Agency ","Very Normal Ads" ],
+          'perdaycount': [1242,1000,950],
+          'amount': [.25,3.50,24.75],
+          'geo': ["Nigeria","US","US"],
+          'keywords':["politics","shopping","politics"],
+          'vars':["partisan","partisan","age"],
+          'ip':["223.271.248.1568","140.192.45.170","73.107.60.11"]}
+#Creating dictionary with information from Table 1
+
+addf = pd.DataFrame(addata)
+print(addf)
+#Printing information from dicitonary as a data frame
+
+data = pd.read_csv('/Users/jada_garr/Desktop/CTP/ipsept18.csv')
+#Reading in data from given file
+mylist = data['ips'].tolist()
+#Creating a list from the data in the "ips" column
+print (len(data))
+#Printing lenth of mylist to the console
+print (data['ips'][0:10])
+#Printing the first 10 values from the mylist to the console
+
+def fraud (x):
+    """ Function "fraud" accepts 1 argument and determines if IP addresses 
+    #are fraudulent or not"""
+print(fraud.__doc__)
+    
+if len(mylist[x]) > 14 or len(mylist[x]) < 10:
+    print ("Fraudulent. Invalid IP Address")
+#Checking length of IP addresses. Flagging if shorter than 10 and longer than
+# 14 characters
+    
+elif mylist[x] == mylist[x+1] and mylist[x] == mylist[x+2]:
+    print ("Fraudulent. Too many requests")
+#Checking the amount of requests each IP address made. Flagging if IP address
+# made more than 3 requests.
+    
+elif mylist[x][0:4] == '166.' or mylist[x][0:4] == '217.':
+    print ("Fraudulent. Banned request location.")
+
+elif mylist[x][0:4] == '213.' or mylist[x][0:3] == '62.':
+    print ("Fraudulent. Banned request location.")
+#Checking for IP addresses that come from the UK or Nigeria. Flags as 
+#fraudulent
+    
+else :
+    print ("All Clear")
+    #Prints all clear to console if IP address passes all statements
+    
+    print ("fraud () test 1", fraud (94))
+    print ("fraud () test 2", fraud (601))
+    print ("fraud () test 3", fraud (107))
+    print ("fraud () test 4", fraud (296))
+    print ("fraud () test 5", fraud (321))
+    # Runs function fraud with 5 different values 
